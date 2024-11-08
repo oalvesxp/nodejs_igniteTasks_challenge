@@ -1,3 +1,4 @@
+import { randomUUID } from 'crypto'
 import { Database } from './database.js'
 
 const database = new Database()
@@ -22,7 +23,10 @@ export const routes = [
        * Cria nova task
        * campos : { id, title, description, created_at, updated_at, completed_at }
        */
-      return res.end('Salvando task')
+      const { title, description } = req.body
+      database.insert('tasks', { id: randomUUID(), title, description })
+
+      return res.writeHead(201).end()
     },
   },
   {
