@@ -1,12 +1,13 @@
 import { randomUUID } from 'crypto'
 import { Database } from './database.js'
+import { buildRoutePath } from './utils/build-route.path.js'
 
 const database = new Database()
 
 export const routes = [
   {
     method: 'GET',
-    path: '/tasks',
+    path: buildRoutePath('/tasks'),
     handler: (req, res) => {
       /**
        * Filtrar uma task por { title, decription }
@@ -17,7 +18,7 @@ export const routes = [
   },
   {
     method: 'POST',
-    path: '/tasks',
+    path: buildRoutePath('/tasks'),
     handler: (req, res) => {
       const { title, description } = req.body
 
@@ -56,7 +57,7 @@ export const routes = [
   },
   {
     method: 'PUT',
-    path: '/tasks/:id',
+    path: buildRoutePath('/tasks/:id'),
     handler: (req, res) => {
       /**
        * Atualiza as informações de uma task
@@ -68,7 +69,7 @@ export const routes = [
   },
   {
     method: 'PATCH',
-    path: '/tasks/:id/complete',
+    path: buildRoutePath('/tasks/:id/complete'),
     handler: (req, res) => {
       /**
        * Marca a task como "completed_at"
@@ -79,7 +80,7 @@ export const routes = [
   },
   {
     method: 'DELETE',
-    path: '/tasks/:id',
+    path: buildRoutePath('/tasks/:id'),
     handler: (req, res) => {
       /**
        * Deleta uma task
