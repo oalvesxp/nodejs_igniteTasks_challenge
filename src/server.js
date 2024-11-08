@@ -12,6 +12,7 @@ const server = http.createServer((req, res) => {
     return route.handler(req, res)
   }
 
+  /** Early return */
   return res.writeHead(404).end('Not Found')
 })
 
