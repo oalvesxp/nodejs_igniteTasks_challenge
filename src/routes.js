@@ -64,7 +64,12 @@ export const routes = [
        * Params : { id }
        * Request body: [{ title? }, { description? }]
        */
-      return res.end('Atualizando task')
+      const { id } = req.params
+      const { title, description } = req.body
+
+      database.update('tasks', id, { title, description })
+
+      return res.writeHead(204).end()
     },
   },
   {
