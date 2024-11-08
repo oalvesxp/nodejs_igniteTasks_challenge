@@ -24,9 +24,38 @@ export const routes = [
        * campos : { id, title, description, created_at, updated_at, completed_at }
        */
       const { title, description } = req.body
-      database.insert('tasks', { id: randomUUID(), title, description })
 
-      return res.writeHead(201).end()
+      /** { title } e { description } => required */
+      if (!title)
+        return res.writeHead(400).end(
+          JSON.stringify({
+            error: 'Bad Request',
+            message: 'Title is required',
+          })
+        )
+
+      if (!description)
+        return res.writeHead(400).end(
+          JSON.stringify({
+            error: 'Bad Request',
+            message: 'Description is required',
+          })
+        )
+
+      const task = {
+        id: randomUUID(),
+        title,
+        description,
+        created_at: new Date(),
+        updated_at: new Date(),
+        completed_at: null,
+      }
+
+      database.insert('tasks', task)
+
+      return res
+        .writeHead(201)
+        .end(JSON.stringify({ message: 'Success', id: task.id }))
     },
   },
   {
