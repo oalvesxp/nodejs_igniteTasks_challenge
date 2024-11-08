@@ -9,20 +9,16 @@ export const routes = [
     path: '/tasks',
     handler: (req, res) => {
       /**
-       * Buscar todas as tasks
        * Filtrar uma task por { title, decription }
        */
-      return res.end('Buscando tasks')
+      const tasks = database.select('tasks')
+      return res.writeHead(200).end(JSON.stringify(tasks))
     },
   },
   {
     method: 'POST',
     path: '/tasks',
     handler: (req, res) => {
-      /**
-       * Cria nova task
-       * campos : { id, title, description, created_at, updated_at, completed_at }
-       */
       const { title, description } = req.body
 
       /** { title } e { description } => required */
