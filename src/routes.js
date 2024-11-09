@@ -59,11 +59,6 @@ export const routes = [
     method: 'PUT',
     path: buildRoutePath('/tasks/:id'),
     handler: (req, res) => {
-      /**
-       * Atualiza as informações de uma task
-       * Params : { id }
-       * Request body: [{ title? }, { description? }]
-       */
       const { id } = req.params
       const { title, description } = req.body
 
@@ -76,11 +71,20 @@ export const routes = [
     method: 'PATCH',
     path: buildRoutePath('/tasks/:id/complete'),
     handler: (req, res) => {
-      /**
-       * Marca a task como "completed_at"
-       * Params: { id }
-       */
-      return res.end('Task completa')
+      const { id } = req.params
+      const [task] = database.select('tasks', { id })
+
+      if (!task)
+        return res
+          .writeHead(404)
+          .end(JSON.stringify({ error: 404, message: 'Not Found' }))
+
+      const isCompleted = !!task.completed_at
+      const completed_at = isCompleted ? null : new Date()
+
+      database.update('tasks', id, { completed_at })
+
+      return res.writeHead(204).end()
     },
   },
   {
@@ -91,6 +95,7 @@ export const routes = [
        * Deleta uma task
        * params: { id }
        */
+      console.log(req.params)
       return res.end('Deletando task')
     },
   },
