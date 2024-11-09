@@ -122,12 +122,19 @@ export const routes = [
     method: 'DELETE',
     path: buildRoutePath('/tasks/:id'),
     handler: (req, res) => {
-      /**
-       * Deleta uma task
-       * params: { id }
-       */
-      console.log(req.params)
-      return res.end('Deletando task')
+      const { id } = req.params
+      const [task] = database.select('tasks', { id })
+
+      if (!task)
+        return res
+          .writeHead(404)
+          .end(
+            JSON.stringify({ error: 'Not Found', message: 'No tasks founded' })
+          )
+
+      database.delete('tasks', id)
+
+      return res.writeHead(204).end()
     },
   },
 ]
