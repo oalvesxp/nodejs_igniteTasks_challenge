@@ -1,0 +1,20 @@
+{
+  "tasks": [
+    {
+      "id": "79a35b2a-ec35-4c7f-a7ea-0383f5914423",
+      "title": "Challenge Nodejs",
+      "description": "Desafio prático do módulo 01 de nodejs",
+      "created_at": "2024-11-08T19:53:15.803Z",
+      "updated_at": "2024-11-08T19:53:15.803Z",
+      "completed_at": null
+    },
+    {
+      "id": "b092352e-e2c3-4069-8599-07f6a1547182",
+      "title": "Finalizar leitura",
+      "description": "Terminar o livro amores impossíveis",
+      "created_at": "2024-11-09T13:39:40.989Z",
+      "updated_at": "2024-11-09T16:07:58.015Z",
+      "completed_at": "2024-11-09T16:08:41.438Z"
+    }
+  ]
+}

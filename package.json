@@ -1,0 +1,13 @@
+{
+  "name": "ignite_task",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Desafio do módulo Fundamentos do Node.js do curso da Rocketseat",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node --watch src/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT"
+}
