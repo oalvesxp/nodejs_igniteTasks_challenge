@@ -59,7 +59,7 @@ export const routes = [
 
       return res
         .writeHead(201)
-        .end(JSON.stringify({ message: 'Success', id: task.id }))
+        .end(JSON.stringify({ message: 'Created', id: task.id }))
     },
   },
   {
@@ -69,7 +69,29 @@ export const routes = [
       const { id } = req.params
       const { title, description } = req.body
 
-      database.update('tasks', id, { title, description })
+      if (!title && !description)
+        return res.writeHead(400).end(
+          JSON.stringify({
+            error: 'Bad Request',
+            message: 'Title or Description are required',
+          })
+        )
+
+      /** Verifica se a task existe */
+      const [task] = database.select('tasks', { id })
+
+      if (!task)
+        return res
+          .writeHead(404)
+          .end(
+            JSON.stringify({ error: 'Not Found', message: 'No tasks founded' })
+          )
+
+      database.update('tasks', id, {
+        title: title ?? task.title,
+        description: description ?? task.description,
+        updated_at: new Date(),
+      })
 
       return res.writeHead(204).end()
     },
@@ -84,7 +106,9 @@ export const routes = [
       if (!task)
         return res
           .writeHead(404)
-          .end(JSON.stringify({ error: 404, message: 'Not Found' }))
+          .end(
+            JSON.stringify({ error: 'Not Found', message: 'No tasks founded' })
+          )
 
       const isCompleted = !!task.completed_at
       const completed_at = isCompleted ? null : new Date()

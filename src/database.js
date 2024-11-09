@@ -52,6 +52,7 @@ export class Database {
 
     if (rowIndex > -1) {
       const row = this.#database[table][rowIndex]
+
       this.#database[table][rowIndex] = { id, ...row, ...data }
       this.#persist()
     }
