@@ -63,6 +63,8 @@ Antes das rotas, vamos entender qual a estrutura (propriedades) que uma task dev
   Deve ser possível marcar a task como completa ou não. Isso significa que se a task estiver concluída, deve voltar ao seu estado “normal”. </br>
   Antes da alteração, deve ser feito uma validação se o `id` pertence a uma task salva no banco de dados.
 
+  ***
+
 ### E a importação do CSV?
 
 Normalmente em uma API, a importação de um CSV acontece enviando o arquivo pela rota, por meio de outro formato, chamado `multipart/form-data`.
