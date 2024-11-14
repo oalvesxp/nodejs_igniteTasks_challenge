@@ -42,7 +42,7 @@ Antes das rotas, vamos entender qual a estrutura (propriedades) que uma task dev
   Deve ser possível listar todas as tasks salvas no banco de dados. </br>
   Também deve ser possível realizar uma busca, filtrando as tasks pelo `title` e `description`
 
----
+  ***
 
 - `PUT - /tasks/:id` </br>
 
@@ -51,14 +51,14 @@ Antes das rotas, vamos entender qual a estrutura (propriedades) que uma task dev
   Se for enviado somente o `title`, significa que o `description` não pode ser atualizado e vice-versa. </br>
   Antes de realizar a atualização, deve ser feito uma validação se o `id` pertence a uma task salva no banco de dados.
 
----
+  ***
 
 - `DELETE - /tasks/:id` </br>
 
   Deve ser possível remover uma task pelo `id`. </br>
   Antes de realizar a remoção, deve ser feito uma validação se o `id` pertence a uma task salva no banco de dados.
 
----
+  ***
 
 - `PATCH - /tasks/:id/complete` </br>
 
