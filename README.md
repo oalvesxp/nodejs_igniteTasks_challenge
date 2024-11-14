@@ -28,8 +28,6 @@ Antes das rotas, vamos entender qual a estrutura (propriedades) que uma task dev
 
 #### Rotas
 
----
-
 - `POST - /tasks` </br>
 
   Deve ser possível criar uma task no banco de dados, enviando os campos `title` e `description` por meio do `body` da requisição. </br>
